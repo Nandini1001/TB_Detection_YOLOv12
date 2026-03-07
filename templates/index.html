@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<title>YOLO Object Detection</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="card">
+
+<h1>YOLO Object Detection</h1>
+
+<form method="POST" enctype="multipart/form-data">
+
+<div class="upload-area">
+
+<input type="file" name="image" id="fileInput" required>
+
+<label for="fileInput" class="upload-label">
+Click to Upload Image
+</label>
+
+<p id="fileName"></p>
+
+</div>
+
+<button type="submit">Detect Objects</button>
+
+</form>
+
+{% if image %}
+
+<div class="result">
+
+<h2>Detection Result</h2>
+
+<img src="{{ url_for('result', filename=image) }}">
+
+</div>
+
+{% endif %}
+
+{% if prediction %}
+
+<div class="output-box 
+{% if prediction == 'Healthy' %}
+healthy
+{% else %}
+tb
+{% endif %}
+">
+
+<p><strong>Output:</strong> {{ prediction }}</p>
+<p><strong>Confidence:</strong> {{ confidence }}%</p>
+
+</div>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<script>
+
+const fileInput = document.getElementById("fileInput");
+const fileName = document.getElementById("fileName");
+
+fileInput.addEventListener("change", function(){
+
+if(this.files.length > 0){
+
+fileName.textContent = "Uploaded: " + this.files[0].name;
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>

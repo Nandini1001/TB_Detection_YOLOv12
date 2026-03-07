@@ -1,0 +1,11 @@
+gradio
+flask
+werkzeug
+ultralytics
+torch
+torchvision
+opencv-python
+numpy
+pillow
+PyYAML
+psutil
